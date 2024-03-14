@@ -1,5 +1,6 @@
 import customtkinter
 import database_manager
+from tkinter import messagebox
 
 class PasswordManagerApp:
     def __init__(self):
@@ -25,11 +26,13 @@ class PasswordManagerApp:
 
         self.save_button = customtkinter.CTkButton(self.app, text="Save Password", command=self.save_password)
         self.save_button.pack(pady=10)
+        
 
     def save_password(self):
         website = self.website_var.get()
         password = self.password_var.get()
         database_manager.save_password(website, password)
+        messagebox.showinfo("Success", "Password saved successfully!")
 
     def run(self):
         self.app.mainloop()
