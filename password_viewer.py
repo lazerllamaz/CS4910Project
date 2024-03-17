@@ -13,6 +13,7 @@ def print_passwords():
     # Print the website-password pairs
     for row in rows:
         website, password = row
+        password = encryption_manager.decrypt_password(password)
         print("Website:", website)
         print("Password Hash:", password)
         print()  # Add an empty line between pairs
