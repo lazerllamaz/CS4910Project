@@ -73,7 +73,16 @@ class PasswordManagerApp:
         submit_button = customtkinter.CTkButton(password_window, text="Submit", command=submit_password)
         submit_button.pack()
 
-        password_viewer.print_passwords()
+        #password_viewer.print_passwords()
+        password_viewer.print_passwords_gui()
+
+
+            # Define a function to handle window close event
+        def on_close():
+            password_window.destroy()
+
+        # Bind the close event to the on_close function
+        password_window.protocol("WM_DELETE_WINDOW", on_close)
 
         password_window.mainloop()
     
