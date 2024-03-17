@@ -5,6 +5,7 @@ from cryptography.fernet import Fernet
 import hashlib
 import os
 import password_viewer
+import encryption_manager
 
 class PasswordManagerApp:
     def __init__(self):
