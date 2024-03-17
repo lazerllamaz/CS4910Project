@@ -14,18 +14,23 @@ def create_table(conn):
     """Create the passwords table if it doesn't exist"""
     try:
         cursor = conn.cursor()
-        cursor.execute('''CREATE TABLE IF NOT EXISTS passwords
-                          (website TEXT PRIMARY KEY, password TEXT)''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS passwords (
+            id INTEGER PRIMARY KEY,
+            website TEXT NOT NULL,
+            password TEXT NOT NULL
+            )
+        ''')
         conn.commit()
         cursor.close()
     except sqlite3.Error as e:
         print(e)
 
 
-
 def save_password(website, password):
     """Save a password to the database"""
     conn = create_connection('passwords.db')
+    create_table(conn)
     if conn:
         try:
             cursor = conn.cursor()
