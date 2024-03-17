@@ -1,13 +1,13 @@
 from cryptography.fernet import Fernet
 
-key = b'0123456789abcdef0123456789abcdef'  # 32-byte key FOR TESTING ONLY
+key = b'hB9z5aKST2nR20WxUbQXfihgAnvHzJ1RlSimgP3-Nkw='  # 32-byte key FOR TESTING ONLY
 #key = Fernet.generate_key()
 
 cipher_suite = Fernet(key)
 
 def encrypt_password(password):
     """Encrypts a password."""
-    # Ensure the password is bytes
+    # Ensure the password is in bytes
     if isinstance(password, str):
         password = password.encode()
     encrypted_password = cipher_suite.encrypt(password)

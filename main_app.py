@@ -42,7 +42,8 @@ class PasswordManagerApp:
     def save_password(self):
         website = self.website_var.get()
         password = self.password_var.get()
-        database_manager.save_password(website, password)
+        encrypted_password = encryption_manager.encrypt_password(password)
+        database_manager.save_password(website, encrypted_password)
         messagebox.showinfo("Success", "Password saved successfully!")
 
 

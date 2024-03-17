@@ -1,4 +1,5 @@
 import sqlite3
+import encryption_manager
 
 def print_passwords():
     # Connect to the database
