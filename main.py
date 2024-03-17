@@ -1,5 +1,5 @@
 import customtkinter
-import gui
+import main_app
 import sys
 import database_manager
 
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     customtkinter.set_appearance_mode("Dark")
 
     # Create and run the GUI
-    app = gui.PasswordManagerApp()
+    app = main_app.PasswordManagerApp()
     app.run()
 
     main()

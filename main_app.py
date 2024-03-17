@@ -4,6 +4,7 @@ from tkinter import messagebox
 from cryptography.fernet import Fernet
 import hashlib
 import os
+import password_viewer
 
 class PasswordManagerApp:
     def __init__(self):
@@ -44,15 +45,15 @@ class PasswordManagerApp:
         messagebox.showinfo("Success", "Password saved successfully!")
 
 
-    def derive_key(password, salt=None):
+    def derive_key(self, password, salt=None):
         if salt is None:
             salt = os.urandom(16)  # Generate a random salt
-        key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000)
+        key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000) # Generate a key
         return key, salt
     
 
     def view_passwords(self):
-        # Prompt the user for their password using a text entry widget
+        # Prompt the user for their password
         password_window = customtkinter.CTk()
         password_window.title("Enter Password")
         password_label = customtkinter.CTkLabel(password_window, text="Enter your password:")
@@ -70,9 +71,10 @@ class PasswordManagerApp:
         submit_button = customtkinter.CTkButton(password_window, text="Submit", command=submit_password)
         submit_button.pack()
 
+        password_viewer.print_passwords()
+
         password_window.mainloop()
     
-
 
     def run(self):
         self.app.mainloop()
