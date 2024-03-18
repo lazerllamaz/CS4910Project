@@ -7,6 +7,10 @@ import os
 import password_viewer
 import encryption_manager
 
+
+# This is the main app GUI
+
+
 class PasswordManagerApp:
     def __init__(self):
         self.app = customtkinter.CTk()
@@ -39,6 +43,7 @@ class PasswordManagerApp:
         self.view_passwords_button.pack()
         
 
+    # Save website name and encrypted password to database
     def save_password(self):
         website = self.website_var.get()
         password = self.password_var.get()
@@ -48,6 +53,8 @@ class PasswordManagerApp:
 
 
     def derive_key(self, password, salt=None):
+        """Derive the key from entered password"""
+
         if salt is None:
             salt = os.urandom(16)  # Generate a random salt
         key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000) # Generate a key
@@ -55,7 +62,9 @@ class PasswordManagerApp:
     
 
     def view_passwords(self):
-        # Prompt the user for their password
+        """Open window to view passwords"""
+
+        # Prompt user for their password
         password_window = customtkinter.CTk()
         password_window.title("Enter Password")
         password_label = customtkinter.CTkLabel(password_window, text="Enter your password:")
@@ -69,20 +78,14 @@ class PasswordManagerApp:
             print("Derived key:", key)
             print("Salt:", salt)
             password_window.destroy()
+            password_viewer.print_passwords_gui()
 
         submit_button = customtkinter.CTkButton(password_window, text="Submit", command=submit_password)
         submit_button.pack()
 
-        #password_viewer.print_passwords()
-        password_viewer.print_passwords_gui()
+        
 
-
-            # Define a function to handle window close event
-        def on_close():
-            password_window.destroy()
-
-        # Bind the close event to the on_close function
-        password_window.protocol("WM_DELETE_WINDOW", on_close)
+        
 
         password_window.mainloop()
     
