@@ -14,5 +14,3 @@ sudo apt install python3-pip
 pip3 install customtkinter]
 
 Must run a seperate command to install normal tkinter for program: "sudo apt-get install python3-tk"
-
-tutorial on encryption for later: https://www.geeksforgeeks.org/how-to-encrypt-and-decrypt-strings-in-python/
